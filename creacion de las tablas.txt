@@ -1,0 +1,63 @@
+import pandas as pd
+#  creacion de la tabla dim_employees 
+df_employees=pd.read_sql_query("""SELECT LastName, FirstName, Title, ReportsTo, BirthDate, HireDate, Address, 
+City, State, Country, PostalCode, Phone, Fax, Email
+FROM employees;
+ """, con=engine.connect())
+df_employees.head()
+# creacion de la tabla dim_albums
+df_albums=pd.read_sql_query("""SELECT AlbumId, Title
+FROM albums;
+ """, con=engine.connect())
+df_albums.head()
+#creacion de la tabla dim_media_types
+df_mediatypes=pd.read_sql_query("""SELECT MediaTypeID, Name
+FROM media_types;
+ """, con=engine.connect())
+df_mediatypes.head()
+# creacion de la tabla dim_genre
+df_genres=pd.read_sql_query("""SELECT GenreID, Name
+FROM genres;
+ """, con=engine.connect())
+df_genres.head()
+#creacion de la tabla dim_playlists
+df_playlists=pd.read_sql_query("""SELECT PlaylistID, Name
+FROM playlists;
+ """, con=engine.connect())
+df_playlists.head()
+# creacion de la tabla dim_artists
+df_artists=pd.read_sql_query("""SELECT ArtistID, Name
+FROM artists;
+ """, con=engine.connect())
+df_artists.head()
+# creacion de la tabla dim_invoice
+df_invoices=pd.read_sql_query("""SELECT InvoiceID, Total
+FROM invoices;
+ """, con=engine.connect())
+df_invoices.head()
+# creacion de la tabla dim_customers
+df_customers=pd.read_sql_query("""SELECT CustomerId,Firstname,LastName,Company,Address,City,State,Country,PostalCode,
+Phone,Fax,Email,SupportRepId
+FROM customers;
+ """, con=engine.connect())
+df_customers.head()
+# creacion de la tabla dim_tracks
+df_tracks=pd.read_sql_query("""SELECT TrackId,Name,MediaTypeID,GenreId,Composer,Milliseconds,Bytes,UnitPrice
+FROM tracks;
+ """, con=engine.connect())
+df_tracks.head()
+#creacion de la tabla dim_time
+df_time=pd.read_sql_query("""SELECT InvoiceDate
+FROM invoices;
+ """, con=engine.connect())
+df_time=df_time.drop_duplicates(['InvoiceDate'], keep='first')
+df_time.head()
+#creacion de la tabla dim_location
+df_location=pd.read_sql_query("""SELECT BillingAddress, BillingCity, BillingState, BillingCountry, BillingPostalCode
+FROM invoices;
+ """, con=engine.connect())
+df_location=df_location.drop_duplicates(['BillingAddress'], keep='first')
+df_location.head()
+
+
+
